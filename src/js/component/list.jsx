@@ -4,18 +4,16 @@ function List() {
 
     const [toDoList, setToDoList] = useState("")
     const [addItem, setAddItem] = useState([])
-    
+
+
+
     const handleBtn = () => {
-        if (toDoList !== ''){
+        if (toDoList !== '') {
             setAddItem([...addItem, toDoList])
         }
 
         setToDoList("")
     }
-    
-
-
-
 
     return (
 
@@ -47,16 +45,23 @@ function List() {
                     <div className="card-body">
 
                         <ul className="list-group list-group-flush">
+                            {
+                                addItem.map((item, index) => (
+                                    <li key={index} className="list-group-item ">{item}
 
-                            <li className="list-group-item ">{addItem}<span className="close-btn">remove</span></li>
+                                        <span className="close-btn" onClick={()=> setAddItem(addItem.filter((t,currentIndex)=> index != currentIndex))}>remove</span>
 
+                                    </li>
+
+                                ))
+                            }
                         </ul>
 
                     </div>
 
 
                     <div className="card-footer text-body-secondary">
-                        5 items left
+                        {addItem.length} items left
                     </div>
 
                 </div>
